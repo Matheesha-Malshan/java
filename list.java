@@ -10,6 +10,15 @@ class List{
 		
 		array[nextIndex++]=data;
 	}
+	public void remove(int index){
+		System.out.print(nextIndex);
+		int[] tempArray=new int[nextIndex-1];
+		
+		for(int i=index;i<=nextIndex-1;i++){
+			array[i]=array[i+1];	
+		}
+		
+	}
 
 	public void add(int index,int data){
 		if(index>=0 && index<=nextIndex){
@@ -58,9 +67,10 @@ class Demo{
 		list.add(30);
 		list.add(40);
 		list.add(50);
+		list.add(60);
+		list.printList();
 		
-		list.add(1,22);
-		
+		list.remove(2);
 		list.printList();
 		
 	}

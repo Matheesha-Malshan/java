@@ -1,9 +1,7 @@
 import java.util.*;
 
 
-class c7{
-	
-	
+class Contacts{
 	
 	public static int[] contactIdArray=new int[5];
 	public static String[] nameArray=new String[5];
@@ -48,60 +46,46 @@ class c7{
 	     }while(choise!=-1);
 	}
 	
-	public static void table(){
-		/*
+	public static void table(int[] idA,String[] nameA,String[] phoneN,String[] companyN,double[] salaryA,String[] birthDayA){
+		
 		int u=0;
 		
-		String n="--------------------------------------------------------------------------\n"+
-			 "|    %d      | %s        |     %s    |  %s      |  %d     |  %d           |",
-			 contactIdArray[u],phoneNumberArray[u],companyNameArray[u],salaryArray[u],birthDayArray[u]
-			 
-		int table_length=3;
 		
 		String s="-|------------------------------------------------------------------------|-\n"+
-			  "| Contact Id |    Name    | phone Number| company | salary |  Birthday   |\n";
-		        
+			  "| Contact Id |    Name    | phone Number| company | salary|  Birthday   |\n";
+		
+		String ta=s;        
 	         
-		for (int u=0;u<Contact Id.length;u++){
-		
-			  n=n+"\n"+n;
-		
+		while(companyNameArray[u]!=null){
+			
+			String n=String.format(
+			"--------------------------------------------------------------------------\n"+
+		        "|%10d |%-12s|%-13s|%-9s|%8.2f|%-13s|\n",
+			 idA[u],nameA[u],phoneN[u],companyN[u],salaryA[u],birthDayA[u]);
+			 
+			 ta+=n;
+			 
+			 u++;
 		} 
-		*/
-		
+		System.out.println(ta);
+	
 	}
-	public static void makeOrder(int i,int j){
-		 
-		String temp;
-		double sal;
-		int co;
-		
-		temp=phoneNumberArray[j];
-		phoneNumberArray[j]=phoneNumberArray[i];
-		phoneNumberArray[i]=temp;
-		
-		temp=companyNameArray[j];
-		companyNameArray[j]=companyNameArray[i];
-		companyNameArray[i]=temp;
-		
-		sal=salaryArray[j];
-		salaryArray[j]=salaryArray[i];
-		salaryArray[i]=sal;
-		
-		temp=birthDayArray[j];
-		birthDayArray[j]=birthDayArray[i];
-		birthDayArray[i]=temp;
-		
-		co=contactIdArray[j];
-		contactIdArray[j]=contactIdArray[i];
-		contactIdArray[i]=co;
-		
-	}
+	
 	public static void orderFind(String[] array){
+	
+		int[] idA=contactIdArray;
+		String[] nameA=nameArray;
+		String[] phoneN=phoneNumberArray;        
+		String[] companyN=companyNameArray;
+		double[] salaryA=salaryArray;
+		String[] birthDayA=birthDayArray; 
+		
+		           
 		String temp;
 		double sal;
 		int co;
 		int len=0;
+		
 		for(int y=0;y<array.length;y++){
 			
 			if(array[y]!=null){
@@ -122,25 +106,29 @@ class c7{
 					
 					if(d>c){
 					
-						temp=phoneNumberArray[j];
-						phoneNumberArray[j]=phoneNumberArray[i];
-						phoneNumberArray[i]=temp;
+						temp=nameA[j];
+						nameA[j]=nameA[i];
+						nameA[i]=temp;
+					
+						temp=phoneN[j];
+						phoneN[j]=phoneN[i];
+						phoneN[i]=temp;
 						
-						temp=companyNameArray[j];
-						companyNameArray[j]=companyNameArray[i];
-						companyNameArray[i]=temp;
+						temp=companyN[j];
+						companyN[j]=companyN[i];
+						companyN[i]=temp;
 						
-						sal=salaryArray[j];
-						salaryArray[j]=salaryArray[i];
-						salaryArray[i]=sal;
+						sal=salaryA[j];
+						salaryA[j]=salaryA[i];
+						salaryA[i]=sal;
 						
-						temp=birthDayArray[j];
-						birthDayArray[j]=birthDayArray[i];
-						birthDayArray[i]=temp;
+						temp=birthDayA[j];
+						birthDayA[j]=birthDayA[i];
+						birthDayA[i]=temp;
 						
-						co=contactIdArray[j];
-						contactIdArray[j]=contactIdArray[i];
-						contactIdArray[i]=co;
+						co=idA[j];
+						idA[j]=idA[i];
+						idA[i]=co;
 						t=3;
 						
 					}
@@ -150,12 +138,14 @@ class c7{
 			}
 		
 		}
-		System.out.println(Arrays.toString(nameArray));
-		System.out.println(Arrays.toString(phoneNumberArray));
-		System.out.println(Arrays.toString(companyNameArray));
-		System.out.println(Arrays.toString(salaryArray));
-		System.out.println(Arrays.toString(birthDayArray));
-		System.out.println(Arrays.toString(contactIdArray));
+		System.out.println(Arrays.toString(nameA));
+		System.out.println(Arrays.toString(phoneN));
+		System.out.println(Arrays.toString(companyN));
+		System.out.println(Arrays.toString(salaryA));
+		System.out.println(Arrays.toString(birthDayA));
+		System.out.println(Arrays.toString(idA));
+		
+		table(idA,nameA,phoneN,companyN,salaryA,birthDayA);
 	}
 
 	public static void list(){
@@ -176,9 +166,11 @@ class c7{
 			int op=input.nextInt();
 			
 			if (op==1){
-				System.out.print("called");
+				
 				 orderFind(companyNameArray);
-				 //table();
+				
+				 
+				
 			}
 			else if (op ==2){
 				//op
@@ -206,7 +198,7 @@ class c7{
 		do{
 
 			do{	
-				System.out.print("search contact bu name or phone number");
+				System.out.print("search contact by name or phone number");
 				input.nextLine();
 				String var=input.nextLine();	
 				
@@ -272,7 +264,7 @@ class c7{
 			System.out.println("salary\t\t :"+salary);
 			System.out.println("birthDay(YYYY-MM-DD) :"+birthDay);
 			
-			System.out.println("do you want delete this contact");
+			System.out.print("do you want delete this contact");
 			String answer=input.nextLine();
 			
 			if (answer=="yes"){
@@ -307,7 +299,7 @@ class c7{
 				nameArray[j]=null;
 			}
 			
-			System.out.println("do you want delete another contact");
+			System.out.print("do you want delete another contact");
 			run=input.nextLine();
 		
 		}while(run=="yes");	
@@ -339,7 +331,7 @@ class c7{
 		
 		do{
 			do{	
-				System.out.print("search contact bu name or phone number");
+				System.out.print("search contact by name or phone number");
 				input.nextLine();
 				String var=input.nextLine();	
 				
@@ -415,7 +407,7 @@ class c7{
 			System.out.print("\n\n");
 			System.out.print("Enter an option to continue");
 			option=input.nextInt();
-			
+			input.nextLine();
 			
 			if(option==1){
 				
@@ -423,7 +415,6 @@ class c7{
 						 "============");
 				System.out.print("Input new name");
 				newName=input.nextLine();
-				input.nextLine();
 				nameArray[j]=newName;
 				
 				
@@ -460,9 +451,11 @@ class c7{
 				}while(newSalary<0);
 				salaryArray[j]=newSalary;
 			}
-			System.out.println("contact has been saved successfully");
+			
 		
-		System.out.println("do you want to update more contacts");
+		
+		System.out.println("contact has been saved successfully");
+		System.out.print("do you want to update more contacts : ");
 		run=input.nextLine();
 				
 		}while(run=="yes");
@@ -500,12 +493,13 @@ class c7{
 		String birthDay;
 		boolean format=true;
 		
+		input.nextLine();
 		System.out.print("Name\t\t:");
 		name=input.nextLine();
 		nameArray[contact]=name;
-		input.nextLine();
 		
-		do{
+		
+		do{	
 			System.out.print("phone number\t:");
 			phoneNumber=input.nextLine();
 		
